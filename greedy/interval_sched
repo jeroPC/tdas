@@ -1,0 +1,26 @@
+Función SeleccionActividades(actividades):
+    // Cada elemento en 'actividades' tiene una propiedad .inicio y .fin
+    
+    // 1. Paso fundamental del Greedy: ordenar
+    Ordenar(actividades) de menor a mayor según su propiedad .fin (mergesort)
+    
+    seleccionadas = []
+    
+    // Llevamos un registro de cuándo termina la última actividad que aceptamos.
+    // Lo inicializamos bien bajo para que la primera actividad siempre entre.
+    fin_ultima_aceptada = -INFINITO 
+    
+    // 2. Un único ciclo lineal para filtrar
+    Para cada act en actividades:
+        
+        // Condición: ¿Esta actividad arranca después (o en el mismo momento) 
+        // de que se liberó la sala por última vez?
+        Si act.inicio >= fin_ultima_aceptada:
+            
+            // La acepto
+            Agregar act a seleccionadas
+            
+            // Actualizo mi barrera de tiempo
+            fin_ultima_aceptada = act.fin
+            
+    Retornar seleccionadas

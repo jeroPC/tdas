@@ -1,0 +1,44 @@
+Nombre del algoritmo: Camino más largo en un DAG (Longest Path in a DAG).
+
+Recurrencia: Para encontrar el camino más largo desde u, miramos todos sus vecinos v y tomamos el máximo de ir hacia v más el mejor camino desde v hasta $t.
+
+opt(u) = max {peso(u,v) + opt(v) }
+
+// 1. Estructura de memoización global
+OPT = arreglo de tamaño |V| inicializado con el valor "NO_CALCULADO"
+
+Función EncontrarCaminoMasLargo(u, t, Grafo):
+    // 2. Caso base de éxito: hemos llegado al nodo destino 't'
+    Si u == t:
+        Retornar 0
+
+    // 3. Verificamos si OPT(u) ya fue resuelto previamente
+    Si OPT[u] != NO_CALCULADO:
+        Retornar OPT[u]
+
+    // 4. Inicializamos el peso máximo como menos infinito
+    max_peso = -INFINITO
+
+    // 5. Relación de recurrencia: iteramos sobre los vecinos de 'u'
+    Para cada arista (u, v, peso_arista) en Grafo.adyacentes(u):
+        
+        // Llamada recursiva para obtener OPT(v)
+        opt_v = EncontrarCaminoMasLargo(v, t, Grafo)
+        
+        // Solo sumamos si el camino desde 'v' logró llegar a 't'
+        Si opt_v != -INFINITO:
+            peso_actual = peso_arista + opt_v
+            
+            // Nos quedamos con la opción que maximice el resultado
+            Si peso_actual > max_peso:
+                max_peso = peso_actual
+
+    // 6. Guardamos el resultado óptimo en el arreglo (Memoización)
+    OPT[u] = max_peso
+
+    // 7. Retornamos OPT(u) para el nodo actual
+    Retornar max_peso
+
+
+
+https://claude.ai/chat/b0ef65ba-99f5-47ba-ad33-ed963ffa628e

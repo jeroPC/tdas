@@ -1,0 +1,10 @@
+1. El Esquema General de Resolución (D&C)
+Para cualquier ejercicio de este tipo, debes cumplir estos 4 pasos:
+
+Caso Base: ¿Cuál es el tamaño mínimo del problema que sé resolver instantáneamente? (Ej: un vector de 1 elemento).
+
+División: ¿Cómo divido el problema en subproblemas más pequeños? (Generalmente a la mitad, n/2).
+
+Conquista (Recursión): Llamar al algoritmo para los subproblemas.
+
+Combinación (El "Truco"): Aquí es donde se diferencia un algoritmo eficiente de uno que no lo es. ¿Cómo uso los resultados de las partes para dar la respuesta final?

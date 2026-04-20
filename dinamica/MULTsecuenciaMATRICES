@@ -1,0 +1,36 @@
+Función MultiplicacionMatricesOptima(p):
+    // 'p' es el arreglo de dimensiones: p[0], p[1], ..., p[n]
+    // La matriz Ai tiene dimensiones p[i-1] x p[i]
+    n = longitud(p) - 1
+    
+    // 1. Crear matriz OPT de tamaño (n+1) x (n+1)
+    OPT = nueva matriz[n+1][n+1]
+    
+    // 2. Casos base: Multiplicar una sola matriz tiene costo 0
+    Para i desde 1 hasta n:
+        OPT[i][i] = 0
+        
+    // 3. Iteramos sobre 'L', la longitud del intervalo (cadena de matrices)
+    Para L desde 2 hasta n:
+        
+        // 'i' es el inicio del intervalo
+        Para i desde 1 hasta n - L + 1:
+            
+            // 'j' es el final del intervalo
+            j = i + L - 1
+            
+            // Inicializamos el costo en infinito para buscar el mínimo
+            OPT[i][j] = INFINITO
+            
+            // 4. Recurrencia: probamos todos los puntos de corte 'k'
+            Para k desde i hasta j - 1:
+                
+                // Calculamos el costo de este corte particular
+                costo_corte = OPT[i][k] + OPT[k+1][j] + (p[i-1] * p[k] * p[j])
+                
+                // Si encontramos una forma más barata de multiplicar, actualizamos
+                Si costo_corte < OPT[i][j]:
+                    OPT[i][j] = costo_corte
+                    
+    // 5. El resultado final es el costo óptimo de multiplicar desde A1 hasta An
+    Retornar OPT[1][n]

@@ -1,0 +1,50 @@
+func disco_maximo(discos):
+	ordeno de menor a mayor por radio arrOrd
+	creo array disc , el cual va a iterar arrOrd 
+	y determinar en los indices [0] [0] [1] [2]
+	que valor es complatible consigo mismo almacenando su indice
+
+	opt[1] = discos[1]
+
+	desde i = 2  hasta n : 
+	    si discos[i] + opt[ disc[i] ] > opt[i -1] :
+			opt[i] =  discos[i] + opt[ disc[i] ]
+		sino 
+			opt[i] = opt[i -1]
+	
+	return opt[n]
+
+
+func reconstruccion : 
+	propuesta = []
+	i = n (tope)
+
+	while i > 0 :
+		si opt[i] != opt[i -1]
+			propuesta.add[i]
+			si disc[i] = 0:
+				break
+			i  = disc[i]
+		i -= 1
+
+	return propuesta
+
+
+
+otra reconstruccion
+
+# Asumiendo que 'opt' tiene tamaño n+1 y 'opt[0] = 0'
+func reconstruccion(discos, opt, disc):
+    propuesta = []
+    i = n  # Empezamos desde el último disco analizado
+
+    mientras i > 0:
+        # ¿La mejor opción para llegar a opt[i] fue elegir el disco i?
+        # Verificamos si: valor_actual + mejor_anterior_compatible == opt_actual
+        si discos[i].valor + opt[disc[i]] >= opt[i-1]:
+            propuesta.agregar(discos[i]) # El disco i forma parte de la solución
+            i = disc[i]                  # Saltamos directamente al anterior compatible
+        sino:
+            i = i - 1                    # El disco i no servía, pasamos al anterior
+            
+    return propuesta

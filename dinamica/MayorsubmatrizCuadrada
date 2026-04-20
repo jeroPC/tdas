@@ -1,0 +1,39 @@
+Función MayorSubmatrizCuadrada(matriz):
+    n = filas(matriz)
+    m = columnas(matriz)
+    
+    // Si la matriz está vacía, no hay cuadrados
+    Si n == 0 o m == 0:
+        Retornar 0
+        
+    // 1. Creamos la matriz OPT del mismo tamaño
+    OPT = nueva matriz[n][m] inicializada en 0
+    max_lado = 0
+    
+    // 2. Iteramos fila por fila, de izquierda a derecha
+    Para i desde 0 hasta n - 1:
+        Para j desde 0 hasta m - 1:
+            
+            // Solo nos interesan las celdas que son "true"
+            Si matriz[i][j] == true:
+                
+                // 3. Casos base: Primera fila o primera columna
+                Si i == 0 o j == 0:
+                    OPT[i][j] = 1
+                
+                // 4. Recurrencia: Buscamos en los vecinos ya calculados
+                Sino:
+                    vecino_arriba = OPT[i-1][j]
+                    vecino_izq = OPT[i][j-1]
+                    vecino_diag = OPT[i-1][j-1]
+                    
+                    OPT[i][j] = MIN(vecino_arriba, vecino_izq, vecino_diag) + 1
+                
+                // 5. Actualizamos el tamaño máximo encontrado hasta ahora
+                Si OPT[i][j] > max_lado:
+                    max_lado = OPT[i][j]
+
+    // 6. El problema pide la mayor submatriz (área o lado, dependiendo de cómo se formule).
+    // Si te piden el tamaño del lado, retornas max_lado.
+    // Si te piden la cantidad de elementos (el área), retornas max_lado al cuadrado.
+    Retornar max_lado * max_lado

@@ -1,0 +1,38 @@
+Función SeleccionarInvitados(lista_socios, amistades):
+    // 1. Preparación inicial del grafo
+    grados = [] // Arreglo donde guardo cuántos amigos tiene cada persona
+    cola_eliminados = Nueva Cola()
+    en_la_fiesta = Arreglo de booleanos, todos en VERDADERO al principio
+
+    Para cada socio en lista_socios:
+        grados[socio] = Contar sus amistades en la lista
+        
+        // Condición Greedy inicial: Si de entrada ya no cumple, a la cola
+        Si grados[socio] < 4:
+            cola_eliminados.Encolar(socio)
+            en_la_fiesta[socio] = FALSO
+
+    // 2. Proceso de poda en cadena
+    Mientras cola_eliminados NO esté vacía:
+        socio_echado = cola_eliminados.Desencolar()
+
+        // Reviso a todos los amigos de la persona que acabo de echar
+        Para cada amigo de socio_echado en amistades:
+            
+            // Si el amigo todavía seguía en la fiesta, ahora tiene un amigo menos
+            Si en_la_fiesta[amigo] es VERDADERO:
+                grados[amigo] = grados[amigo] - 1
+                
+                // Si por culpa de esta resta, el amigo cae por debajo de 4...
+                Si grados[amigo] < 4:
+                    // ...entonces también se tiene que ir
+                    cola_eliminados.Encolar(amigo)
+                    en_la_fiesta[amigo] = FALSO
+
+    // 3. Resultado final
+    lista_final = []
+    Para cada socio en lista_socios:
+        Si en_la_fiesta[socio] es VERDADERO:
+            Agregar socio a lista_final
+
+    Retornar lista_final

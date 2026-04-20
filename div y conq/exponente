@@ -1,0 +1,19 @@
+Algoritmo PotenciaDC(a, n)
+    // Caso Base
+    Si n == 0 Entonces 
+        Retornar 1
+    FinSi
+
+    // División: Calculamos la potencia de la mitad del exponente
+    // IMPORTANTE: Se llama una sola vez y se guarda en una variable
+    res_mitad = PotenciaDC(a, n / 2)
+
+    // Combinación
+    Si (n % 2 == 0) Entonces
+        // Si n es par: (a^(n/2))^2
+        Retornar res_mitad * res_mitad
+    Sino
+        // Si n es impar: a * (a^(n/2))^2
+        Retornar a * res_mitad * res_mitad
+    FinSi
+FinAlgoritmo

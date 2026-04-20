@@ -1,0 +1,28 @@
+Algoritmo BuscarMenorFaltante(A, inicio, fin)
+    // Caso base: si el rango se cruza, encontramos el límite
+    Si inicio > fin Entonces
+        Retornar inicio + 1 // El primer número que falta
+
+    medio = (inicio + fin) / 2
+    valor_esperado = medio + 1
+
+    // Si el valor es el esperado, el hueco está a la derecha
+    Si A[medio] == valor_esperado Entonces
+        Retornar BuscarMenorFaltante(A, medio + 1, fin)
+    
+    // Si el valor es mayor al esperado, el hueco está a la izquierda
+    Sino
+        Retornar BuscarMenorFaltante(A, inicio, medio - 1)
+
+FinAlgoritmo
+
+
+con bucles 
+
+
+mientras inicio <= fin hacer
+    medio = (inicio + fin) / 2
+    si A[medio] == medio + 1 entonces
+        inicio = medio + 1  // Descarto izquierda
+    sino
+        fin = medio - 1     // Descarto derecha

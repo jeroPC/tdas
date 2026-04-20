@@ -1,0 +1,33 @@
+Ordenamos los faros por kilómetro de inicio de cobertura Si de forma creciente
+
+ultimo_km_cubierto = 0
+faros_elegidos = []
+i = 0  # Índice para recorrer la lista de faros
+
+Mientras i < longitud(faros_ordenados):
+    proximo_faro_optimo_a_elegir = {vacío}
+    
+    # Consumimos todos los faros que empiecen dentro de nuestro límite actual
+    Mientras i < longitud(faros_ordenados) Y faros_ordenados[i].Si <= ultimo_km_cubierto:
+        
+        # Si es el primero que evaluamos, o si llega más lejos que el mejor que teníamos
+        Si proximo_faro_optimo_a_elegir == {vacío} O faros_ordenados[i].Ei > proximo_faro_optimo_a_elegir.Ei:
+            proximo_faro_optimo_a_elegir = faros_ordenados[i]
+            
+        i = i + 1  # Avanzamos al siguiente faro
+        
+    # Si salimos del while interno y la variable sigue vacía, significa 
+    # que el faro en la posición 'i' empieza después de 'ultimo_km_cubierto'.
+    # Como los faros están ordenados, hay un hueco imposible de cubrir.
+    Si proximo_faro_optimo_a_elegir == {vacío}:
+        retornar "Error: No es posible cubrir totalmente la línea costera"
+        
+    # Si encontramos un candidato válido, lo agregamos y actualizamos el límite
+    faros_elegidos.add(proximo_faro_optimo_a_elegir)
+    ultimo_km_cubierto = proximo_faro_optimo_a_elegir.Ei
+    
+    # (Opcional) Si te dan una distancia total 'L' a cubrir, podés agregar:
+    # Si ultimo_km_cubierto >= L:
+    #     romper ciclo
+
+retornar faros_elegidos

@@ -1,0 +1,33 @@
+func min_tecnicos(tecnicos):
+
+
+	ordeno de menor a mayor por el dia y horario usando mergesort
+	i = 0 
+	n = len(tecnicos)
+	tecnicos_elegido = []
+	
+
+
+	mientras I < N :
+
+		tecnico_a_cubrir = tecnicos[i]
+        
+        mejor_tecnico = {vacio}
+        max_Df = -1
+        max_Hf = -1
+
+
+		mientras i < n and t.Di <= tec_a_cubrir.Df  o (tecnicos[i].Dxi == tecnico_a_cubrir.Hf Y tecnico.Hi <= tec_a_cubrir.Hf) :
+			si tecnico.DF > max_Df  Y tecnico.Hf > max_Hf :
+				mejor_tecnico = tecnico[i]
+				max_Df = tecnico.DF
+				max_Hf = tecnico.hf
+			
+			i= i+1 
+
+		tecnicos_elegido.add(mejor_tecnico)
+
+		Mientras i < n Y (tecnicos[i].Di < mejor_tecnico.Df O (tecnicos[i].Dxi == mejor_tecnico.Dxf Y tecnicos[i].Hxi <= mejor_tecnico.Hxf)) hacer:
+				i = i + 1
+
+	Devolver seleccionados
