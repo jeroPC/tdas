@@ -15,5 +15,5 @@ Algoritmo PotenciaDC(a, n)
     Sino
         // Si n es impar: a * (a^(n/2))^2
         Retornar a * res_mitad * res_mitad
-    FinSi
-FinAlgoritmo
+        
+    FinAlgoritmo

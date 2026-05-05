@@ -7,7 +7,7 @@ func disco_maximo(discos):
 	opt[1] = discos[1]
 
 	desde i = 2  hasta n : 
-	    si discos[i] + opt[ disc[i] ] > opt[i -1] :
+			si discos[i] + opt[ disc[i] ] > opt[i -1] :
 			opt[i] =  discos[i] + opt[ disc[i] ]
 		sino 
 			opt[i] = opt[i -1]
