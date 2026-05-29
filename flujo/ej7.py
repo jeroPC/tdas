@@ -16,10 +16,7 @@ asignadas juntas a un centro Mi
 parte 1:
 
 def actualizar_grafo_residual(grafo_residual, u, v, valor):
-    """
-    Actualiza las capacidades de las aristas en el grafo residual tras 
-    enviar flujo por un camino de aumento.
-    """
+ 
     peso_anterior = grafo_residual.peso(u, v)
     
     # 1. Restar la capacidad a la arista directa (forward edge)
@@ -36,9 +33,7 @@ def actualizar_grafo_residual(grafo_residual, u, v, valor):
 
 
 def flujo_ford_fulkerson(grafo, s, t):
-    """
-    Calcula la red de flujos máximos desde un origen a un destino.
-    """
+   
     flujo = {}
     
     # Inicializamos el flujo de toda arista del grafo original a 0
