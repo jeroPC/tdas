@@ -13,7 +13,7 @@ def previo_compatible(carteles):
     #los carteles ya estan ordenado de menor a mayor por km
     compatible = [0] * (n +1)
     j= 1;
-
+    
     for i in range(len(compatible)):
         while j < i and carteles[i].km - carteles[j].km >= 5:
             j+= 1
