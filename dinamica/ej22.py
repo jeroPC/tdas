@@ -59,7 +59,7 @@ def red_electrica(ciudades):
         no_opt = OPT(i -1)
         mejor_opt = ciudades[i].ganancia + opt(compatibles[i])
 
-        mejor_resultado = max(mejor_opt, no_opt)
+        OPT[i] = max(mejor_opt, no_opt)
     
     return opt[n], compatibles
 
