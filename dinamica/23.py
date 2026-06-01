@@ -22,17 +22,13 @@ def compatibles_con_for(contratos):
     n = len(contratos)
     compatible = [0] * (n + 1)
 
-    # i representa el contrato actual (1-indexed para la DP)
     for i in range(1, n + 1):
-        # Buscamos hacia atrás desde el contrato anterior (i-2) hasta el principio (0)
-        # contratos[i-1] es el contrato actual en el array indexado en 0
         ultimo_compatible = 0
         
         for j in range(i - 1, 0, -1):
-            # Recordá: el fin de J tiene que ser menor o igual al inicio de I
             if contratos[j - 1].finalizacion <= contratos[i - 1].inicio:
                 ultimo_compatible = j
-                break # ¡Frenamos! Ya encontramos el más cercano que es compatible
+                break 
                 
         compatible[i] = ultimo_compatible
         

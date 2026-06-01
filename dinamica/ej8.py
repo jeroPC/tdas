@@ -18,7 +18,7 @@ def previo_compatible(carteles):
         while j < i and carteles[i].km - carteles[j].km >= 5:
             j+= 1
         
-        compatible[i] = j -1
+        compatible[i] = j - 1
 
 
 

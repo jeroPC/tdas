@@ -22,14 +22,11 @@ FUNC ENCONTRAR_ROTACION(V, inicio, fin):
 	if inicio > fin: return -1
 	if V[inicio] <= v[fin] return inicio
 
-	mitad  = (inicio +fin) / 2
+	mitad  = (inicio + fin) / 2
 
 	if mitad > inicio and V[mitad] < V[mitad - 1]: return mitad
 	if mitad < fin and V[mitad] > V[mitad + 1]: return mitad + 1
 		
-	if mitad < fin and V[mitad] > V[mitad + 1]:
-	return mitad + 1
-	
 	else if v[mitad]  > v[fin]:
 		return ENCONTRAR_ROTACION(V , mitad+1, fin)
 	

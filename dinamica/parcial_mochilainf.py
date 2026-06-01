@@ -2,8 +2,11 @@ def max_ganancia_matriz(perfumes, k):
     n = len(perfumes)
     
     # Renombramos la matriz a 'opt'
-    opt = [[0] * (k + 1) for _ in range(n + 1)]
-    
+    Para i desde 0 hasta n:
+        OPT[i][0] = 0
+    Para w desde 0 hasta k:
+        OPT[0][w] = 0
+
     for i in range(1, n + 1):
         g_i = perfumes[i]['ganancia']
         w_i = perfumes[i]['peso']
