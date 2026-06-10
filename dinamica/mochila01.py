@@ -7,7 +7,7 @@ def mochila_01(perfumes, k):
     
     for i in range(1, n + 1):
         g_i = perfumes[i]['ganancia']
-        w_i = perfumes[i]['peso']
+        k_i = perfumes[i]['peso']
         
         for p in range(1, k + 1):
             if w_i > p:
@@ -15,7 +15,7 @@ def mochila_01(perfumes, k):
             else:
                 no_usar = opt[i - 1][p]
                 # OJO: Acá usamos opt[i - 1][p - w_i] (fila i-1, porque no se puede repetir)
-                usar_uno = g_i + opt[i - 1][p - w_i]
+                usar_uno = g_i + opt[i - 1][p - k_i]
                 
                 opt[i][p] = max(no_usar, usar_uno)
                 
