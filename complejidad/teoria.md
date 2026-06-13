@@ -4,9 +4,9 @@
 
 - **Ciclo Hamiltoniano**: Es lo mismo que el camino, pero con una condición extra: el último nodo del recorrido tiene que estar conectado con el primero, formando un ciclo cerrado que pasa por todos los nodos una vez.
 
-- **Clique (o CFI)**: Buscás un subgrupo de $k$ nodos donde todos están conectados con todos, es decir, un subgrafo completo o "todos amigos entre sí".
+- **Clique (o CFI)**: Buscás un subgrupo de k nodos donde todos están conectados con todos, es decir, un subgrafo completo o "todos amigos entre sí".
 
-- **Conjunto Independiente (CI)**: Todo lo contrario a Clique. Buscás un subgrupo de $k$ nodos donde ninguno está conectado con ninguno, es decir, completamente aislados.
+- **Conjunto Independiente (CI)**: Todo lo contrario a Clique. Buscás un subgrupo de k nodos donde ninguno está conectado con ninguno, es decir, completamente aislados.
 
 - **Vertex Cover (VC - Cobertura de Vértices)**: Buscás un subgrupo de hasta $k$ nodos que "toquen" o cubran todas las aristas del grafo. No puede quedar ninguna arista sin al menos uno de sus extremos en tu subgrupo.
 
