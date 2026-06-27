@@ -12,7 +12,7 @@ subconjunto de ejes cuya falla provoca este problema
 def actualizar_grafo_residual(grado_residual,u,v , valor):
     peso_ant= grado_residual.peso(u,v)
 
-    if pseo_anterior == valor :
+    if paso_anterior == botella :
         grafo_residual.remover_arista(u,v)
     else:
         grado_residual.cambiar_peso(u,v,pseo_anterior)
