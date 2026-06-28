@@ -99,3 +99,6 @@ def planificar_guardias(medicos, periodos_feriados, F):
         return True, cronograma
     
     return False, None
+
+complejidad o(|e| * f)
+Donde |E| es la cantidad de aristas y f^* es el valor del flujo máximo (que en tu caso está acotado por la cantidad de días feriados totales, T.
