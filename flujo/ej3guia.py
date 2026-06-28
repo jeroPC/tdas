@@ -47,6 +47,9 @@ def ford_fulkerson(grafo,s,t):
             
             actualizar_grafo_residual(grafo_residual,u,v,botella)
 
+    return flujo
+
+
 
 
 def corte_minimo(grafo, flujo, capacidad, s):
