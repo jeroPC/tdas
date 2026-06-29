@@ -20,8 +20,7 @@ region b ---> a OSEA a depende de b , valor arista : inf
 region neta negativa ---> T le asingo la perdida
 
 
-def corte_minimo(grafo, flujo, capacidad, s):
-    residual = grafo_residual(grafo, flujo, capacidad)
+def corte_minimo(grafo, s, residual):
     
     # BFS para ver qué nodos siguen siendo alcanzables desde fuente
     alcanzables = BFS(residual, s)

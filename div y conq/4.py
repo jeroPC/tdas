@@ -21,7 +21,7 @@ def es_primo(a, n ):
     if n es par :
         return = subproblema * subproblema
     else:
-        retunrn = resultado_par * a
+        return = subproblema * subproblem * a
 
 
     
