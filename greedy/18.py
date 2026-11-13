@@ -15,20 +15,23 @@ inpeccion = eventos que se llevan a cabo en el momento
 
 eleccion greedy = mientras un evento este de inicio y fin determinado coloco por lo menos un 
 personal medico , en caso de que no haya un medico , hay un problema
-
 def inspeccionar_actividades(actividades):
-    actividades = mergesort(actividades de menor a mayor por tiempo de finalizacion)
-    contador = 0
-    inspecciones_totales = 0
-
-
-    while contador < len(actividades):
-        act_actual_fin = actividades[contador].fin
-        inspecciones_totales += 1
-        while contador < len(actividades) and actividades[contador].incio < act_actual_fin:
-            contador += 1
+    # Ordenar por fin ascendente
+    actividades.sort(key=lambda a: a.fin)
     
-
+    inspecciones_totales = 0
+    i = 0
+    n = len(actividades)
+    
+    while i < n:
+        # Fijamos la inspección en el fin de la actividad actual
+        momento_inspeccion = actividades[i].fin
+        inspecciones_totales += 1
+        
+        # Descartamos todas las actividades que ya empezaron antes o en ese instante
+        while i < n and actividades[i].inicio <= momento_inspeccion:
+            i += 1
+            
     return inspecciones_totales
 
 

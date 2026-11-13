@@ -5,7 +5,8 @@ contar en la fórmula final. Cada ingrediente tiene asociado un costo por milím
 Sabiendo que en la presentación final es de X milímetros cúbicos. Presentar una solución
 utilizando metodología greedy que resuelva el problema"""
 
-ingredientes= [ingrediente.minimo, ingrediente.maximo, ingrediente.costo]
+ingredientes= [ingrediente.minimo,
+ ingrediente.maximo, ingrediente.costo]
 fucn crear-perfume(lista_ingredientes,costo ) :
 
 	ordenar_por_mergesort(lista_ingredientes, costo)	x = VOLUMEN FINAL DESEADO (VA A IR RESTANDOSE INTERNAMNET )
@@ -27,7 +28,7 @@ fucn crear-perfume(lista_ingredientes,costo ) :
             break
 	
 		espacio_libre = x - volumen_actual
-		limite_ingredientes = ingrediente.maximo ingrediente.minimo
+		limite_ingredientes = ingrediente.maximo -  ingrediente.minimo
 
 		# Elegimos el menor entre lo que falta para llenarlo o el máximo del ingrediente
         cantidad_extra = min(espacio_libre, limite_ingrediente)

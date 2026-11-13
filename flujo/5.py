@@ -92,7 +92,7 @@ def resolver_punto_a(grafo_original):
     min_cables = float('inf')
     mejor_corte_aristas = []
 
-    for t in vertices[1:]:
+    for t in vertices[1:] :
         flujo_total, flujo, grafo_residual = ford_fulkerson(grafo_flujo, s, t)
         
         if flujo_total < min_cables:

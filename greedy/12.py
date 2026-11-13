@@ -15,46 +15,33 @@ varios se superponen en algunos momentos del mes
 pero sabemos que siempre hay 1 en las instalaciones
 nos piden dejar la cantidad minima de guardias, siempre y cuando haya uno custodiando
 
-
-guardias = { a:[1 - 3], b:[2-3], c:[3- 8] , d:[6-8], e:[8-12]}
-aca la solucion optima seria a , c, e 
-
-
-def min_guardias(guardias):
-    guardias = mergesort por dia de inicio de menor a mayor
-    if len(guardias) <= 0:
-        return
-
-        
-    resultado=[]
-    resultado = [guardias[0]]
-    fin_actual = guardias[0].dia_fin
+def min_guardias(guardias, inicio_mes, fin_mes):
+    # 1. Ordenar por día de inicio
+    guardias.sort(key=lambda g: g.dia_inicio)
     
-    i = 1
-    while i < len(guardias):
-        max_fin = fin_actual
+    resultado = []
+    cobertura_actual = inicio_mes
+    i = 0
+    n = len(guardias)
+    
+    while cobertura_actual < fin_mes:
         mejor_guardia = None
-
-        while i < n and guardias[i].dia_inicio <= max_fin:
-            if guardias[i].dia_fin > max_fin:
-                max_fin = guardias[i].dia_fin
+        max_alcance = cobertura_actual
+        
+        # Buscar entre todos los que se solapan con lo cubierto, el que llegue más lejos
+        while i < n and guardias[i].dia_inicio <= cobertura_actual:
+            if guardias[i].dia_fin > max_alcance:
+                max_alcance = guardias[i].dia_fin
                 mejor_guardia = guardias[i]
-
-
-            i += 1 
-
-        if not mejor_guardia:
-            break
-
-        if mejor_guardia.dia_fin > guardias[0].dia_fin and mejor_guardia.dia_inicio == guardias[0].dia_inicio:
-            resultado[0] = mejor_guardia
-            fin_actual = mejor_guardia.dia_fin
+            i += 1
             
-        else:
-            resultado.append(mejor_guardia)
-            fin_actual = max_fin
-
-
+        # Si no hubo nadie que solapara o nadie que extendiera la cobertura, hay un bache
+        if not mejor_guardia or max_alcance <= cobertura_actual:
+            return "No es posible cubrir todo el mes"
+            
+        resultado.append(mejor_guardia)
+        cobertura_actual = max_alcance
+        
     return resultado
 
 

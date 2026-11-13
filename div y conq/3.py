@@ -39,10 +39,10 @@ def mezclar(izq_ord, der_ord, matriz):
     i, j =0 
     resultado =[]
 
-    while i < izq_ord && j < der_ord: 
+    while i < izq_ord and j < der_ord: 
         #matriz[i][j] el jugador i le gano al jugador j
 
-        if matriz[izq[i]][der[j]] == 1:
+        if matriz[ [izq[i]] [der[j]]  ]== 1:
             resultado.append(izq[i])
             i++
         else:

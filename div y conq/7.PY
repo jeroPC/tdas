@@ -30,46 +30,38 @@ def obtener_skyline(edificios):
     # COMBINACIÓN: Mezclamos ambos contornos
     return mezclar_skylines(izq_skyline, der_skyline)
 
-
 def mezclar_skylines(izq, der):
     resultado = []
-    # Punteros para recorrer ambos contornos
     i, j = 0, 0
-    # Alturas actuales mientras barremos de izquierda a derecha
     h1, h2 = 0, 0
     
     while i < len(izq) and j < len(der):
-        # Elegimos la coordenada X más a la izquierda para procesar
+        # 1. Elegimos la coordenada X más a la izquierda
         if izq[i][0] < der[j][0]:
-            x, h1 = izq[i][0], izq[i][1]  # Avanzamos en el contorno izquierdo
+            x, h1 = izq[i][0], izq[i][1]
             i += 1
         elif izq[i][0] > der[j][0]:
-            x, h2 = der[j][0], der[j][1]  # Avanzamos en el contorno derecho
+            x, h2 = der[j][0], der[j][1]
             j += 1
-        else:
-            # Si coinciden en X, actualizamos ambas alturas y avanzamos ambos
+        else:  # <--- ESTE ELSE SÍ QUEDA (cuando empatan en X)
             x = izq[i][0]
             h1 = izq[i][1]
             h2 = der[j][1]
             i += 1
             j += 1
         
-        # La altura real en este punto X será la máxima entre ambos sub-contornos
+        # 2. Calculamos la altura máxima en este punto X
         h_max = max(h1, h2)
         
-        # Para evitar puntos duplicados con la misma altura o en la misma X
+        # 3. Solo agregamos el punto si es el primero o si cambió la altura
         if not resultado or resultado[-1][1] != h_max:
-            if resultado and resultado[-1][0] == x:
-                resultado[-1][1] = h_max # Actualizamos la altura si es la misma X
-            else:
-                resultado.append([x, h_max])
+            resultado.append([x, h_max])
                 
-    # Si quedaron puntos residuales en el contorno izquierdo, los agregamos
+    # Agregamos lo que sobre de cualquiera de las dos listas
     while i < len(izq):
         resultado.append(izq[i])
         i += 1
         
-    # Si quedaron puntos residuales en el contorno derecho, los agregamos
     while j < len(der):
         resultado.append(der[j])
         j += 1

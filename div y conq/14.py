@@ -97,3 +97,5 @@ def mezclar_y_contar(izq, der):
     resultado.extend(der[j:])
 
     return resultado, inversiones_mezcla
+
+ver

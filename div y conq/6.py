@@ -63,7 +63,7 @@ def mayor_tamanio_pantalla(lote):
 
 teorema maestro = t(n) = a * t(n/b) + o(n^c )
 
-donde a cantidad lllamada recursivas = 1 
+donde a cantidad llamada recursivas = 1 
 b , division del subproblema = 2 
 c = costo combinar y dividir
 

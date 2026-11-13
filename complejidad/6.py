@@ -44,7 +44,7 @@ debo demostrar que el poblema de vertex cover <= p contratacion eficiente
 vertex_conver = dado un grafo g(v,e) y un numero k, quiero ver si en un subconjunto de vertices
 v' de v de tamanio a lo sumo k / para cada arista (u,v) e E  al menos uno de sus extremos esté en V' es decir, u e V' o v e V'. 
 
-def resolver_contratacion_con_vertex(grafo_vertex k , caja_negra):
+def resolver_contratacion_con_vertex(grafo_vertex, k , caja_negra):
     ayudantes_vertices = grafo_vertex.obtener_todos_los_vertices()
 
     aristas_materias = []

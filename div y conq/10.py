@@ -29,32 +29,32 @@ def recusivo(lista_jugadores,rivales_superados):
 
     mezcla = mezcla(RECURSIVO_izq, RECURSIVO_der,rivales_superados)
     return mezcla
+def mezcla(lista_izq, lista_der, rivales_superados):
+    resultado = []
+    i = 0   # <-- SE CREA Y ARRANCAN EN 0 CADA VEZ QUE SE LLAMA A mezcla()
+    j = 0   # <-- SE CREA Y ARRANCAN EN 0 CADA VEZ QUE SE LLAMA A mezcla()
 
-def mezlca(lista_izq, lista_der, rivales_superados)    :
-    if lista_izq[i][1] <= lista_der[j][1]:
-                resultado.append(lista_izq[i])
-                
-                nombre_jugador = lista_izq[i][0]
-                rivales_superados[nombre_jugador] += j
-                
-                i += 1
-                
-            else:
-                resultado.append(lista_der[j])
-                j += 1
-
-
-        while i < len(lista_izq):
+    # 1. Mientras queden elementos en AMBAS listas:
+    while i < len(lista_izq) and j < len(lista_der):
+        if lista_izq[i][1] <= lista_der[j][1]:
             resultado.append(lista_izq[i])
             nombre_jugador = lista_izq[i][0]
             rivales_superados[nombre_jugador] += j
             i += 1
-
-        while j < len(lista_der):
+        else:
             resultado.append(lista_der[j])
             j += 1
 
-        return resultado
+    # 2. Si sobraron elementos en la izquierda:
+    while i < len(lista_izq):
+        resultado.append(lista_izq[i])
+        nombre_jugador = lista_izq[i][0]
+        rivales_superados[nombre_jugador] += j
+        i += 1
 
+    # 3. Si sobraron elementos en la derecha:
+    while j < len(lista_der):
+        resultado.append(lista_der[j])
+        j += 1
 
-complejidad como mergesort , nlogn 
+    return resultado

@@ -43,14 +43,14 @@ X esté en el cuadrante inferior derecho (donde todos los números son aún mayo
  que X esté en el cuadrante superior izquierdo (donde todos los números son menores). El problema se reduce a buscar en los otros 3 cuadrantes restantes.
 
 
-def buscar_valor_Rec(matriz, fila_inicio, , col_fin, valor):
+def buscar_valor_Rec(matriz, fila_inicio, col_fin, valor):
     if fila_inicio > len(matriz) or col_fin < len(matriz[0]):
         return "no encontrado"
 
     if matriz[fila_inicio][col_fin] == valor:
         return (fila_inicio, col_fin)
     
-    elif matriz[fila_inicio][cola_fin] > valor:
+    elif matriz[fila_inicio][col_fin] > valor:
         return buscar_valor_Rec(matriz , fila_inicio, col_fin-1, valor)
     else:
         return buscar_valor_Rec(matriz , fila_inicio+1, col_fin, valor)
@@ -98,3 +98,15 @@ n = 0
 
 log b (a) = log 2 (3) = 1.585   
 como 1,585 > c que es 0 , O(n^logb a ) ====> O(n^1,585) 
+
+
+#     c_inicio       mitad_c          c_fin
+#          +-------------+---------+-------------+
+# f_inicio |     Q1      |   Q2    |     Q2      |
+#          | (<= pivote) |         |             |
+#          +-------------+---------+-------------+
+# mitad_f  |     Q3      | PIVOTE  |     Q2      |
+#          +-------------+---------+-------------+
+#          |     Q3      |   Q3    |     Q4      |
+# f_fin    |             |         | (>= pivote) |
+#          +-------------+---------+-------------+

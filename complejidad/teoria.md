@@ -8,7 +8,7 @@
 
 - **Conjunto Independiente (CI)**: Todo lo contrario a Clique. Buscás un subgrupo de k nodos donde ninguno está conectado con ninguno, es decir, completamente aislados.
 
-- **Vertex Cover (VC - Cobertura de Vértices)**: Buscás un subgrupo de hasta $k$ nodos que "toquen" o cubran todas las aristas del grafo. No puede quedar ninguna arista sin al menos uno de sus extremos en tu subgrupo.
+- **Vertex Cover (VC - Cobertura de Vértices)**: Buscás un subgrupo de hasta k nodos que "toquen" o cubran todas las aristas del grafo. No puede quedar ninguna arista sin al menos uno de sus extremos en tu subgrupo.
 
 - **Mochila (Knapsack)**: Te dan objetos con pesos y valores, y un tope de peso $W$. Buscás un subgrupo de objetos que no supere el peso total $W$ y maximice el valor.
  

@@ -36,7 +36,7 @@ def ford_fulkerson(grafo, s, t):
 
     grafo_residual = copiar(grafo)
 
-    while (camino := buscar_camino_bfs(grafo_residual, s, t)): 
+    while (camino := buscar_camino_bfs(grafo_residual, s, t)): #funcion q da un camino de s a t
         botella = min_peso(grafo_residual, camino)
         flujo_total += botella  
 
