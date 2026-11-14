@@ -22,36 +22,58 @@ obj = mayor cantidad contratos posibles
 
 cada contraro tiene. dia hora inicio y dia horario fin 
 
-
 def elegir_contratos(lista_de_ofertas):
+    n = len(lista_de_ofertas)
+    if n == 0:
+        return 0
 
-    for contrato in lista_de_ofertas:
-        contrato['inicio_lineal'] = (contrato['dia_inicio'] * 24) + contrato['hora_inicio']
-        contrato['fin_lineal'] = (contrato['dia_fin'] * 24) + contrato['hora_fin']
+    # Pasamos todo a horas de la semana (0 a 168)
+    for c in lista_de_ofertas:
+        c['inicio'] = c['dia_inicio'] * 24 + c['hora_inicio']
+        c['fin'] = c['dia_fin'] * 24 + c['hora_fin']
+        if c['inicio'] >= c['fin']:
+            c['fin'] += 168
+
+    # Ordenamos por fin ascendente: O(n log n)
+    lista_ordenada = mergesort(lista_de_ofertas, clave='fin')
+    max_contratos = 0
+
+    # Probamos cada contrato como ancla: O(n)
+    for i in range(n):
+        ancla = lista_ordenada[i]
         
-        if contrato['inicio_lineal'] > contrato['fin_lineal']:
-            contrato['fin_lineal'] = contrato['fin_lineal'] + 168
+        # Armamos la linea de tiempo desde el ancla hacia adelante
+        # y al final clavamos la copia del ancla con tu marca 9999
+        cola = []
+        for offset in range(1, n):
+            c = lista_ordenada[(i + offset) % n].copy()
+            if c['inicio'] < ancla['inicio']:
+                c['inicio'] += 168
+                c['fin'] += 168
+            cola.append(c)
 
-    lista_ordenada = mergesort(lista_de_ofertas, clave='fin_lineal')
-    
-    max_contratos_global = 0
+        # Tu marca 9999 en la copia del ancla para detectar la vuelta completa
+        copia_ancla = {
+            'inicio': ancla['inicio'] + 168,
+            'fin': ancla['fin'] + 168,
+            'marca': 9999
+        }
+        cola.append(copia_ancla)
 
-    for i in range(len(lista_ordenada)):
-        contrato_ancla = lista_ordenada[i]
-        
-        cantidad_de_esta_vuelta = 1
-        ultimo_fin_valido = contrato_ancla['fin_lineal']
-        
-        for j in range(i + 1, len(lista_ordenada)):
-            contrato_posible = lista_ordenada[j]
-            
-            if contrato_posible['inicio_lineal'] >= ultimo_fin_valido:
-                cantidad_de_esta_vuelta = cantidad_de_esta_vuelta + 1
-                
-                ultimo_fin_valido = contrato_posible['fin_lineal']
-                
-        if cantidad_de_esta_vuelta > max_contratos_global:
-            max_contratos_global = cantidad_de_esta_vuelta
+        cantidad = 1
+        ultimo_fin = ancla['fin']
 
-    return max_contratos_global
+        # Recorremos secuencialmente hasta entrar en el rango del 9999
+        for candidato in cola:
+            # Si este candidato se pisa con el 9999 (o es el 9999), ya dimos toda la vuelta
+            if candidato['fin'] > copia_ancla['inicio'] or candidato.get('marca') == 9999:
+                break
 
+            if candidato['inicio'] >= ultimo_fin:
+                cantidad += 1
+                ultimo_fin = candidato['fin']
+
+        if cantidad > max_contratos:
+            max_contratos = cantidad
+
+    return max_contratos
