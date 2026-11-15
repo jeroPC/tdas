@@ -19,46 +19,32 @@ restricción. ¿Podría usted detallar cuál es esta solución?
 
 #empaques = [1, 5, 10]
 #stock = [2, 1, 1]
-# opt (i,j ) = min { opt (i -1 , j -k * ci ) + k }  
+# opt (i,j ) = min ( opt (i -1 , j), min { opt(j -k * ci )  + k }  
 
+# Convención: empaques y stock están 1-indexados (de 1 a n).
+# opt es una matriz de (n + 1) filas por (X + 1) columnas.
 
 def optimizar_despacho(X, empaques, stock):
-
     n = len(empaques)
-    infinito =  inf 
+    opt = [[inf] * (X + 1) for _ in range(n + 1)]
 
-    opt = [[infinito ] * n + 1]
-
-# Caso base: Para despachar 0 unidades con cualquier cantidad de empaques,
-    # se necesitan 0 cajas.
+    # Caso base: despachar 0 unidades requiere 0 empaques
     for i in range(n + 1):
         opt[i][0] = 0
 
-    for i in range (1, n+1 ):
-        capacidad = empaques[i - 1]
-        limite_stock = stock[i - 1]
-        for j in range(0, X + 1):
-            
-            # El bucle del stock: probamos usar 'k' cajas de este tipo
-            for k in range(limite_stock + 1):
-                # Si poner 'k' cajas no supera el pedido actual 'j'
+    for i in range(1, n + 1):
+        capacidad = empaques[i]
+        limite_stock = stock[i]
+
+        for j in range(1, X + 1):
+            # 1. Caso base de la celda (k = 0): no uso este tipo de empaque
+            opt[i][j] = opt[i - 1][j]
+
+            # 2. Caso k >= 1: pruebo usar 1, 2, ... hasta limite_stock empaques
+            for k in range(1, limite_stock + 1):
                 if j - k * capacidad >= 0:
-                    
-                    # Nos fijamos si el estado anterior (sin estas 'k' cajas) era alcanzable
-                    if dp[i - 1][j - k * capacidad] != INFINITO:
-                        # Evaluamos si es mejor quedarnos con lo que ya teníamos 
-                        # o usar las 'k' cajas nuevas más lo que costaba el resto del pedido
-                        dp[i][j] = min(dp[i][j], dp[i - 1][j - k * capacidad] + k)
+                    opt[i][j] = min(opt[i][j], opt[i - 1][j - k * capacidad] + k)
                 else:
-                    # Si ya nos pasamos de 'j', no tiene sentido seguir probando con más cajas 'k'
                     break
-                    
-    # El resultado final estará en la última celda de la matriz
-    resultado = dp[n][X]
-    
-    # Si el valor sigue siendo INFINITO, significa que con el stock actual
-    # es imposible armar el pedido exacto.
-    if resultado == INFINITO:
-        return "Imposible despachar esa cantidad con el stock disponible."
-    
-    return f"Cantidad mínima de empaques necesarios: {resultado}"
+
+    return opt[n][X]
