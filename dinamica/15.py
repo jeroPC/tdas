@@ -43,7 +43,7 @@ def optimizar_despacho(X, empaques, stock):
             # 2. Caso k >= 1: pruebo usar 1, 2, ... hasta limite_stock empaques
             for k in range(1, limite_stock + 1):
                 if j - k * capacidad >= 0:
-                    opt[i][j] = min(opt[i][j], opt[i - 1][j - k * capacidad] + k)
+                    opt[i][j] = min(opt[i-1][j], opt[i - 1][j - k * capacidad] + k)
                 else:
                     break
 
